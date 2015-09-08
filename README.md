@@ -7,10 +7,11 @@ Basically, the application should offer the google authentication. Once the user
 
 ### Include:
 - Concept of oAuth
+- cordovaOauth
 - How configure and available Google oAuth 2.0 to Access Google APIs
-- Login screen
+- Sing-in button
 - Use of "Google + Api"
-- Render of configuration
+- Render peronal details
 
 ### You should now about...
 - Ionic & AngularJS 
@@ -25,8 +26,127 @@ For this main reason, OAuth was implemented for different companies such as Goog
 ## Step 1: Google configuration
 There are many step previously to work with an application. It's a relevant point in order to avoid future issues.
 
+
 ### Project
 You yould create a project in google.
 Log-in in your google account and go to [https://console.developers.google.com/project](https://console.developers.google.com/project)
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/01%20Projects.png)
+
+
+### Activation
+There are two important configurations. Firstone, the oAuth `Credential` and secondone, the `APIs` availability.
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/02%20Overview%20%20%20ebrickApi.png)
+ 
+### Credentials
+Goahead with credentials.
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/03%20Credentials%20%20%20ebrickApi.png)
+
+For this particular framework is important to chose `oAuth 2.0 client ID Configuration`.
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/04%20Credentials%20%20%20ebrickApi%202.png)
+
+And finally, the strategy will be `Web application`
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/05%20Create%20client%20ID%20%20%20ebrickApi%204.png) 
+
+### Client ID
+In our application we ar going to use the `Client ID` during the first step. Copy it.
+Other relevant configuration will be the `Authorized JavaScript Origins` and `Authorize redirect URIs`.
+Complete these fields with `localhost/callback` settings. This will be our `redirect_uri`.
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/06%20OAuth%20client%20%20%20ebrickApi.png)
+
+### API configuration - Google +
+At this moment the credential's configuration has finished. You have the posibility to interact with the oAuth google's service. However, we are looking for to interact with the `Google + API` in order to get more information about the user.
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/07%20API%20Library%20%20%20ebrickApi.png)
+
+In this case you have the posibility to add more apis, however we are going to limit the example.
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/08%20API%20Library%20%20%20ebrickApi%202.png)
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/09%20Google%20%20Hangouts%20API%20%20%20ebrickApi.png)
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/10%20Google%20%20Hangouts%20API%20%20%20ebrickApi.png)
+
+You can confirm the enabled API's
+
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/11%20Enabled%20APIs%20%20%20ebrickApi%203.png) 
+
+### Underestanding the oAuth sequence
+1. Our application should call google account service using different parameters. We will focus only in three.
+	1. `Client ID`, in order to identify the application.
+	2. `Scope`, in order to access into profile
+		> Scopes are used to grant an application different levels of access to data on behalf of the end user. Each API may declare one or more scopes.
+
+		You can determinate the correct `scope` using the API's Explorer.
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/12%20Google%20APIs%20Explorer.png)
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/13%20Google%20APIs%20Explorer%20Scope.png)
+		 
+	3. `redirect_uri`, Determines where the response is sent. In our configuration we put `Http://localhost/callback`[https://github.com/cristianmercado19/ionic-oAuth-example#Client-ID](https://github.com/cristianmercado19/ionic-oAuth-example#Client-ID "Client Id Configuration")
+2. Google response: Google call `localhost/callback` sending many parameters, the most important for use will be `access_token`. A response looks like this:
+		`{
+          "access_token":"1/fFAGRNJru1FTz70BzhT3Zg",
+          "expires_in":3920,
+          "token_type":"Bearer"
+        }`  
+3. Call Google + API using the valid token
+This will be the last call. In this case, the call is to an API which returns us all users details, the reponse would be similar to thisone:
+```JSON
+{
+ "kind": "plus#person",
+ "etag": "\"gLJf7LwN3wOpLHXk4IeQ9ES9mEc/-yRtIJqIxeLYK8qV0SISpwb9Xp0\"",
+ "gender": "male",
+ "emails": [
+  {
+   "value": "cristianmercado19@gmail.com",
+   "type": "account"
+  }
+ ],
+ "urls": [
+  {
+   "value": "http://picasaweb.google.com/cristianmercado19",
+   "type": "otherProfile",
+   "label": "Álbumes web de Picasa"
+  },
+  {
+   "value": "https://profiles.google.com/100137612319956115933/buzz",
+   "type": "contributor",
+   "label": "Buzz"
+  }
+ ],
+ "objectType": "person",
+ "id": "100137612319956115933",
+ "displayName": "Cristian Mercado",
+ "name": {
+  "familyName": "Mercado",
+  "givenName": "Cristian"
+ },
+ "url": "https://plus.google.com/+CristianMercado",
+ "image": {
+  "url": "https://lh5.googleusercontent.com/-0m_4uVBzdoU/AAAAAAAAAAI/AAAAAAAAJuA/Higp_6ucU2Q/photo.jpg?sz=50",
+  "isDefault": false
+ },
+ "isPlusUser": true,
+ "language": "en_GB",
+ "ageRange": {
+  "min": 21
+ },
+ "circledByCount": 51,
+ "verified": false,
+ "cover": {
+  "layout": "banner",
+  "coverPhoto": {
+   "url": "https://lh3.googleusercontent.com/-s03Rhe435RE/VE5vKRgvVSI/AAAAAAAAIgc/ptpl45UfOME/s630-fcrop64=1,00002ce9ec61f584/DSC2_0079.jpg",
+   "height": 626,
+   "width": 940
+  },
+  "coverInfo": {
+   "topImageOffset": 0,
+   "leftImageOffset": 0
+  }
+ }
+}```
