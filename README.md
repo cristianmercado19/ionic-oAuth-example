@@ -97,7 +97,7 @@ You can confirm the enabled API's
 3. Call Google + API using the valid token, EG:
     `https://www.googleapis.com/plus/v1/people/me?Access_token=157k550fq2itjk503hgovk9q`
 4. Google + returns all user detail, the response would be similar to this one:
-``` json
+``` JSON
 {
  "kind": "plus#person",
  "etag": "\"gLJfwb9Xp0\"",
@@ -151,9 +151,7 @@ You can confirm the enabled API's
    "leftImageOffset": 0
   }
  }
-}
-
-```
+}```
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/oAuth.png)
 
