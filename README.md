@@ -208,9 +208,12 @@ Content:
 	});
 ```
 #### Update reference in index.html
-    Change 
+Change
+ 
 `<script src="js/app.js"></script>`
+
 to
+
 `<script src="js/oAuthApp.js"></script>`
 
 ### signIn-ctrl.js
@@ -309,7 +312,7 @@ Content:
 
 #### Add reference in index.html
 
-    `<script src="js/signIn-ctrl.js"></script>`
+`<script src="js/signIn-ctrl.js"></script>`
 
 ### Views
 
@@ -318,12 +321,12 @@ Content:
 #### Organize the body content
 
 ``` HTML
-    <body ng-app="oauthapp">
-    
-    <ion-nav-view></ion-nav-view>
-    
-    </body>
-    </html>
+<body ng-app="oauthapp">
+
+<ion-nav-view></ion-nav-view>
+
+</body>
+</html>
 ```
 
 
@@ -332,35 +335,35 @@ Content:
 #### Create `login.html` file in the root (`www`)
 #### Content
 ``` HTML
-	<ion-pane>
-	  <ion-header-bar class="bar-stable">
-	    <h1 class="title">Ionic Blank Starter</h1>
-	  </ion-header-bar>
-	  <ion-content ng-controller="SignInCtrl as vm">
-	    <div class="padding">
-	
-	      <button class="button button-block button-positive" ng-click="vm.googleLogin()">
-	        Sign-In
-	      </button>
-	
-	      <h1>{{vm.token}}</h1>
-	
-	      <button class="button button-block button-positive" ng-click="vm.viewProfile()">
-	        View profile
-	      </button>
-	    </div>
-	
-	  </ion-content>
-	</ion-pane>
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Ionic Blank Starter</h1>
+  </ion-header-bar>
+  <ion-content ng-controller="SignInCtrl as vm">
+    <div class="padding">
+
+      <button class="button button-block button-positive" ng-click="vm.googleLogin()">
+        Sign-In
+      </button>
+
+      <h1>{{vm.token}}</h1>
+
+      <button class="button button-block button-positive" ng-click="vm.viewProfile()">
+        View profile
+      </button>
+    </div>
+
+  </ion-content>
+</ion-pane>
 ```
 
 ### Start
-1. Start in server mode and check (view and errors in console)
+Start in server mode and check (view and errors in console)
 `ionic serve`
 
 > REMEMBER: this kind of service (oAuth) can not be tested using `serve` mode
 
-2. Check the view
+Check the view
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/14%20Mobile.png)
 
 
