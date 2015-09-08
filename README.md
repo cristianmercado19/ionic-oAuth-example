@@ -99,7 +99,7 @@ This will be the last call. In this case, the call is to an API which returns us
 ```JSON
 {
  "kind": "plus#person",
- "etag": "\"gLJfwb9Xp0\"",
+ "etag": "\"gLJf7LwN3wOpLHXk4IeQ9ES9mEc/-yRtIJqIxeLYK8qV0SISpwb9Xp0\"",
  "gender": "male",
  "emails": [
   {
@@ -114,13 +114,13 @@ This will be the last call. In this case, the call is to an API which returns us
    "label": "Álbumes web de Picasa"
   },
   {
-   "value": "https://profiles.google.com/1001376123/buzz",
+   "value": "https://profiles.google.com/100137612319956115933/buzz",
    "type": "contributor",
    "label": "Buzz"
   }
  ],
  "objectType": "person",
- "id": "10115933",
+ "id": "100137612319956115933",
  "displayName": "Cristian Mercado",
  "name": {
   "familyName": "Mercado",
@@ -128,7 +128,7 @@ This will be the last call. In this case, the call is to an API which returns us
  },
  "url": "https://plus.google.com/+CristianMercado",
  "image": {
-  "url": "https://lh5.googleusercontent.com/-0BzdoU/AAAAAAI/AAAAJuA/Higp_U2Q/photo.jpg?sz=50",
+  "url": "https://lh5.googleusercontent.com/-0m_4uVBzdoU/AAAAAAAAAAI/AAAAAAAAJuA/Higp_6ucU2Q/photo.jpg?sz=50",
   "isDefault": false
  },
  "isPlusUser": true,
@@ -141,7 +141,7 @@ This will be the last call. In this case, the call is to an API which returns us
  "cover": {
   "layout": "banner",
   "coverPhoto": {
-   "url": "https://lh3.googleusercontent.com/-s0335RE/VE5gvVSI/AAAAIgc/ptpOME/s630-fcrop64=1,0000ec61f584/DSC2_0079.jpg",
+   "url": "https://lh3.googleusercontent.com/-s03Rhe435RE/VE5vKRgvVSI/AAAAAAAAIgc/ptpl45UfOME/s630-fcrop64=1,00002ce9ec61f584/DSC2_0079.jpg",
    "height": 626,
    "width": 940
   },
