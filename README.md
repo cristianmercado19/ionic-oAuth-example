@@ -207,7 +207,6 @@ Content:
 	    $urlRouterProvider.otherwise('/sign-in');
 	});
 ```
-
 2. Update reference in index.html
     Change 
 `<script src="js/app.js"></script>`
