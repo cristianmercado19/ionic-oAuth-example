@@ -172,7 +172,7 @@ We are going to start a new project environment
 ### oAuthApp.js
 This will be our app js.
 
-1. Create `oAuthApp.js` in `js` folder
+#### Create `oAuthApp.js` in `js` folder
 Content:
 
 ``` javascript
@@ -207,7 +207,7 @@ Content:
 	    $urlRouterProvider.otherwise('/sign-in');
 	});
 ```
-2. Update reference in index.html
+#### Update reference in index.html
     Change 
 `<script src="js/app.js"></script>`
 to
@@ -216,7 +216,7 @@ to
 ### signIn-ctrl.js
 This controller will manage the connection between our application and the google api
 
-1. Create `signIn-ctrl.js` in `js` folder
+#### Create `signIn-ctrl.js` in `js` folder
 Content:
 
 ``` javascript
@@ -307,14 +307,15 @@ Content:
 
 ```
 
-2. Add reference in index.html
+#### Add reference in index.html
+
     `<script src="js/signIn-ctrl.js"></script>`
 
 ### Views
 
 ### Index view
 
-1. Organize the body content
+#### Organize the body content
 
 ``` HTML
     <body ng-app="oauthapp">
@@ -328,8 +329,8 @@ Content:
 
 #### Login view
 
-1. Create `login.html` file in the root (`www`)
-2. Content
+#### Create `login.html` file in the root (`www`)
+#### Content
 ``` HTML
 	<ion-pane>
 	  <ion-header-bar class="bar-stable">
@@ -354,8 +355,10 @@ Content:
 ```
 
 ### Start
-1. Start in server mode and check 
+1. Start in server mode and check (view and errors in console)
 `ionic serve`
+
+> REMEMBER: this kind of service (oAuth) can not be tested using `serve` mode
 
 2. Check the view
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/14%20Mobile.png)
@@ -363,8 +366,7 @@ Content:
 
 ## Demo
 1. Prepare the apk using this command `ionic build android`
-
-> REMEMBER: this kind of service (oAuth) can not be tested using `serve` mode.
+2. Copy apk in your mobile and execute the installer
 
 ### Mobile Sequence
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-37-40.jpg)
@@ -377,8 +379,13 @@ Content:
 ### Resources
 
 [ngCordovaOauth github](https://github.com/nraboy/ng-cordova-oauth)
+
 [ngCordovaOauth blog](http://blog.ionic.io/oauth-ionic-ngcordova/)
+
 [apis explorer plus](https://developers.google.com/apis-explorer/?hl=en_US#p/plus/v1/plus.people.get?userId=me&_h=5&)
+
 [oAuth2 web server Google documentation](https://developers.google.com/identity/protocols/OAuth2WebServer)
+
 [Authorizing API requests SCOPES](https://developers.google.com/+/web/api/rest/oauth)
+
 [APIs explorer](https://developers.google.com/apis-explorer/?hl=en_US#p/)
