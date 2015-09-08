@@ -176,37 +176,37 @@ This will be our app js.
 Content:
 
 ``` javascript
-
-// Ionic Starter App
-
-angular.module('oauthapp', ['ionic', 'ngCordovaOauth'])
-  .run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      if(window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      }
-      if(window.StatusBar) {
-        // org.apache.cordova.statusbar required
-        StatusBar.styleDefault();
-      }
-    });
-  })
-
-  .config(function($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-
-      .state('login', {
-        url: "/sign-in",
-        templateUrl: "login.html"
-      })
-
-    console.log("Redirection sign-in");
-
-    $urlRouterProvider.otherwise('/sign-in');
-});```
+	// Ionic Starter App
+	
+	angular.module('oauthapp', ['ionic', 'ngCordovaOauth'])
+	  .run(function($ionicPlatform) {
+	    $ionicPlatform.ready(function() {
+	      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+	      // for form inputs)
+	      if(window.cordova && window.cordova.plugins.Keyboard) {
+	        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+	      }
+	      if(window.StatusBar) {
+	        // org.apache.cordova.statusbar required
+	        StatusBar.styleDefault();
+	      }
+	    });
+	  })
+	
+	  .config(function($stateProvider, $urlRouterProvider) {
+	
+	    $stateProvider
+	
+	      .state('login', {
+	        url: "/sign-in",
+	        templateUrl: "login.html"
+	      })
+	
+	    console.log("Redirection sign-in");
+	
+	    $urlRouterProvider.otherwise('/sign-in');
+	});
+```
 
 2. Update reference in index.html
     Change 
@@ -332,26 +332,27 @@ Content:
 1. Create `login.html` file in the root (`www`)
 2. Content
 ``` HTML
-<ion-pane>
-  <ion-header-bar class="bar-stable">
-    <h1 class="title">Ionic Blank Starter</h1>
-  </ion-header-bar>
-  <ion-content ng-controller="SignInCtrl as vm">
-    <div class="padding">
-
-      <button class="button button-block button-positive" ng-click="vm.googleLogin()">
-        Sign-In
-      </button>
-
-      <h1>{{vm.token}}</h1>
-
-      <button class="button button-block button-positive" ng-click="vm.viewProfile()">
-        View profile
-      </button>
-    </div>
-
-  </ion-content>
-</ion-pane>```
+	<ion-pane>
+	  <ion-header-bar class="bar-stable">
+	    <h1 class="title">Ionic Blank Starter</h1>
+	  </ion-header-bar>
+	  <ion-content ng-controller="SignInCtrl as vm">
+	    <div class="padding">
+	
+	      <button class="button button-block button-positive" ng-click="vm.googleLogin()">
+	        Sign-In
+	      </button>
+	
+	      <h1>{{vm.token}}</h1>
+	
+	      <button class="button button-block button-positive" ng-click="vm.viewProfile()">
+	        View profile
+	      </button>
+	    </div>
+	
+	  </ion-content>
+	</ion-pane>
+```
 
 ### Start
 1. Start in server mode and check 
