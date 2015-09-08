@@ -1,5 +1,5 @@
-# Ionic oAuth 2.0 example with "Google + Api"
-This is one example to use oAuth authentication in Ionic framework.
+# Ionic oAuth 2.0 example with "Google + Api" from the basic concept  
+My initial motivation was create a document about oAuth 2.0. I chose `Ionic` framework because I'm developing an application for mobile... In addition, I chose `Google` because it offers a lot of APIs to use with oAuth authentication. I spent many hours with some internal google configurations and `Google +`. For this main reason, I create this example which includes a first part about `Google settings`. 
 
 ## Goals
 Show step by step how implement "Google + Api" and oAuth credential.
@@ -94,8 +94,9 @@ You can confirm the enabled API's
           "expires_in":3920,
           "token_type":"Bearer"
         }```  
-3. Call Google + API using the valid token
-This will be the last call. In this case, the call is to an API which returns us all users details, the reponse would be similar to thisone:
+3. Call Google + API using the valid token, EG:
+    `https://www.googleapis.com/plus/v1/people/me?Access_token=157k550fq2itjk503hgovk9q`
+4. Google + returns all user detail, the response would be similar to this one:
 ```JSON
 {
  "kind": "plus#person",
@@ -152,7 +153,230 @@ This will be the last call. In this case, the call is to an API which returns us
  }
 }```
 
-## Step 2: Ionic
-We are going to start a new project
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/oAuth.png)
 
-###
+## Step 2: Ionic & ng-Cordova
+We are going to start a new project environment
+
+    ionic start oAuthTest blank
+
+    ionic platform add android
+
+    bower install ng-cordova-oauth -S
+
+	cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+
+> include in the index the ng-cordova-oauth.min.js reference.
+
+### oAuthApp.js
+This will be our app js.
+
+1. Create `oAuthApp.js` in `js` folder
+Content:
+
+``` javascript
+
+// Ionic Starter App
+
+angular.module('oauthapp', ['ionic', 'ngCordovaOauth'])
+  .run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if(window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      }
+      if(window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+      }
+    });
+  })
+
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+
+      .state('login', {
+        url: "/sign-in",
+        templateUrl: "login.html"
+      })
+
+    console.log("Redirection sign-in");
+
+    $urlRouterProvider.otherwise('/sign-in');
+});```
+
+2. Update reference in index.html
+    Change 
+`<script src="js/app.js"></script>`
+to
+`<script src="js/oAuthApp.js"></script>`
+
+### signIn-ctrl.js
+This controller will manage the connection between our application and the google api
+
+1. Create `signIn-ctrl.js` in `js` folder
+Content:
+
+``` javascript
+angular.module('oauthapp').controller('SignInCtrl', ['$http', '$scope', '$cordovaOauth', '$ionicPopup', SignInCtrl]);
+
+function SignInCtrl($http, $scope, $cordovaOauth, $ionicPopup) {
+  console.log("SignInCtrl init");
+
+  var vm = this;
+
+  vm.token = {};
+
+  vm.googleLogin = function () {
+
+    console.log("googleLogin init");
+
+    // complete with YOUR parameter
+    var googleClientId = "[CLIENT_ID]";
+
+    // Space is delimiter between scope
+    $cordovaOauth.google(googleClientId
+      , ["https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"])
+      .then(function (result) {
+
+        vm.token = result.access_token;
+
+        var resultSTR = JSON.stringify(result);
+
+        /* // EG Response
+         {
+         "access_token":"Tz70BzhT3Zg",
+         "expires_in":3920,
+         "token_type":"Bearer"
+         }*/
+
+        var alertPopup = $ionicPopup.alert({
+          title: 'Success',
+          template: resultSTR
+        });
+
+      }, function (error) {
+
+        var alertPopup = $ionicPopup.alert({
+          title: 'Login failed!',
+          template: 'Internal error Server! ' + error
+        });
+
+        console.log("Error -> " + error);
+      });
+
+  };
+
+  vm.viewProfile = function(){
+    var uri = "https://www.googleapis.com/plus/v1/people/me?access_token=" + vm.token;
+    console.log("Received User via HTTP");
+    console.log(uri);
+
+    $http.get(uri)
+      .success(function(data) {
+        console.log("HTTP Success");
+        console.log("data: " + data);
+
+        var resultSTR = JSON.stringify(data);
+
+
+        var alertPopup = $ionicPopup.alert({
+          title: 'Profile',
+          template: resultSTR
+        });
+
+        //self.userCache.put(cacheKey, data);
+        deferred.resolve(data);
+      })
+      .error(function(error) {
+
+        var alertPopup = $ionicPopup.alert({
+          title: 'Profile failed!',
+          template: 'Internal error Server! ' + error
+        });
+
+
+      });
+  };
+  
+  
+
+};
+
+```
+2. Add reference in index.html
+    `<script src="js/signIn-ctrl.js"></script>`
+
+### Views
+
+### Index view
+
+1. Organize the body content
+
+``` HTML
+    <body ng-app="oauthapp">
+    
+    <ion-nav-view></ion-nav-view>
+    
+    </body>
+    </html>
+```
+
+
+#### Login view
+
+1. Create `login.html` file in the root (`www`)
+2. Content
+``` HTML
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Ionic Blank Starter</h1>
+  </ion-header-bar>
+  <ion-content ng-controller="SignInCtrl as vm">
+    <div class="padding">
+
+      <button class="button button-block button-positive" ng-click="vm.googleLogin()">
+        Sign-In
+      </button>
+
+      <h1>{{vm.token}}</h1>
+
+      <button class="button button-block button-positive" ng-click="vm.viewProfile()">
+        View profile
+      </button>
+    </div>
+
+  </ion-content>
+</ion-pane>```
+
+### Start
+1. Start in server mode and check 
+`ionic serve`
+
+2. Check the view
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/14%20Mobile.png)
+
+
+## Demo
+1. Prepare the apk using this command `ionic build android`
+
+> REMEMBER: this kind of service (oAuth) can not be tested using `serve` mode.
+
+### Mobile Sequence
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-37-40.jpg)
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-45-13.jpg)
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-45-47.jpg)
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-46-02.jpg)
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-46-13.jpg)
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/Screenshot_2015-09-08-14-46-39.jpg)
+
+### Resources
+
+[ngCordovaOauth github](https://github.com/nraboy/ng-cordova-oauth)
+[ngCordovaOauth blog](http://blog.ionic.io/oauth-ionic-ngcordova/)
+[apis explorer plus](https://developers.google.com/apis-explorer/?hl=en_US#p/plus/v1/plus.people.get?userId=me&_h=5&)
+[oAuth2 web server Google documentation](https://developers.google.com/identity/protocols/OAuth2WebServer)
+[Authorizing API requests SCOPES](https://developers.google.com/+/web/api/rest/oauth)
+[APIs explorer](https://developers.google.com/apis-explorer/?hl=en_US#p/)
