@@ -97,61 +97,62 @@ You can confirm the enabled API's
 3. Call Google + API using the valid token, EG:
     `https://www.googleapis.com/plus/v1/people/me?Access_token=157k550fq2itjk503hgovk9q`
 4. Google + returns all user detail, the response would be similar to this one:
-``` JSON
-{
- "kind": "plus#person",
- "etag": "\"gLJfwb9Xp0\"",
- "gender": "male",
- "emails": [
-  {
-   "value": "cristianmercado19@gmail.com",
-   "type": "account"
-  }
- ],
- "urls": [
-  {
-   "value": "http://picasaweb.google.com/cristianmercado19",
-   "type": "otherProfile",
-   "label": "Álbumes web de Picasa"
-  },
-  {
-   "value": "https://profiles.google.com/1001376123/buzz",
-   "type": "contributor",
-   "label": "Buzz"
-  }
- ],
- "objectType": "person",
- "id": "10115933",
- "displayName": "Cristian Mercado",
- "name": {
-  "familyName": "Mercado",
-  "givenName": "Cristian"
- },
- "url": "https://plus.google.com/+CristianMercado",
- "image": {
-  "url": "https://lh5.googleusercontent.com/-0BzdoU/AAAAAAI/AAAAJuA/Higp_U2Q/photo.jpg?sz=50",
-  "isDefault": false
- },
- "isPlusUser": true,
- "language": "en_GB",
- "ageRange": {
-  "min": 21
- },
- "circledByCount": 51,
- "verified": false,
- "cover": {
-  "layout": "banner",
-  "coverPhoto": {
-   "url": "https://lh3.googleusercontent.com/-s0335RE/VE5gvVSI/AAAAIgc/ptpOME/s630-fcrop64=1,0000ec61f584/DSC2_0079.jpg",
-   "height": 626,
-   "width": 940
-  },
-  "coverInfo": {
-   "topImageOffset": 0,
-   "leftImageOffset": 0
-  }
- }
-}```
+```
+	{
+	 "kind": "plus#person",
+	 "etag": "\"gLJfwb9Xp0\"",
+	 "gender": "male",
+	 "emails": [
+	  {
+	   "value": "cristianmercado19@gmail.com",
+	   "type": "account"
+	  }
+	 ],
+	 "urls": [
+	  {
+	   "value": "http://picasaweb.google.com/cristianmercado19",
+	   "type": "otherProfile",
+	   "label": "Álbumes web de Picasa"
+	  },
+	  {
+	   "value": "https://profiles.google.com/1001376123/buzz",
+	   "type": "contributor",
+	   "label": "Buzz"
+	  }
+	 ],
+	 "objectType": "person",
+	 "id": "10115933",
+	 "displayName": "Cristian Mercado",
+	 "name": {
+	  "familyName": "Mercado",
+	  "givenName": "Cristian"
+	 },
+	 "url": "https://plus.google.com/+CristianMercado",
+	 "image": {
+	  "url": "https://lh5.googleusercontent.com/-0BzdoU/AAAAAAI/AAAAJuA/Higp_U2Q/photo.jpg?sz=50",
+	  "isDefault": false
+	 },
+	 "isPlusUser": true,
+	 "language": "en_GB",
+	 "ageRange": {
+	  "min": 21
+	 },
+	 "circledByCount": 51,
+	 "verified": false,
+	 "cover": {
+	  "layout": "banner",
+	  "coverPhoto": {
+	   "url": "https://lh3.googleusercontent.com/-s0335RE/VE5gvVSI/AAAAIgc/ptpOME/s630-fcrop64=1,0000ec61f584/DSC2_0079.jpg",
+	   "height": 626,
+	   "width": 940
+	  },
+	  "coverInfo": {
+	   "topImageOffset": 0,
+	   "leftImageOffset": 0
+	  }
+	 }
+	}
+```
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/oAuth.png)
 
