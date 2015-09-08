@@ -1,0 +1,20 @@
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Ionic Blank Starter</h1>
+  </ion-header-bar>
+  <ion-content ng-controller="SignInCtrl as vm">
+    <div class="padding">
+
+      <button class="button button-block button-positive" ng-click="vm.googleLogin()">
+        Sign-In
+      </button>
+
+      <h1>{{vm.token}}</h1>
+
+      <button class="button button-block button-positive" ng-click="vm.viewProfile()">
+        View profile
+      </button>
+    </div>
+
+  </ion-content>
+</ion-pane>
