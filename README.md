@@ -151,7 +151,9 @@ You can confirm the enabled API's
    "leftImageOffset": 0
   }
  }
-}```
+}
+
+```
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/oAuth.png)
 
