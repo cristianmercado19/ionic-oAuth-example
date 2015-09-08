@@ -29,3 +29,4 @@ There are many step previously to work with an application. It's a relevant poin
 You yould create a project in google.
 Log-in in your google account and go to [https://console.developers.google.com/project](https://console.developers.google.com/project)
 
+![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/01%20Projects.png)
