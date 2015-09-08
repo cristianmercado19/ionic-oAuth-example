@@ -1,16 +1,16 @@
-# Ionic oAuth 2.0 example with "Google + Api" from the basic concept  
+# Ionic oAuth 2.0 example with `Google + Api` from the basic concept  
 My initial motivation was create a document about oAuth 2.0. I chose `Ionic` framework because I'm developing an application for mobile... In addition, I chose `Google` because it offers a lot of APIs to use with oAuth authentication. I spent many hours with some internal google configurations and `Google +`. For this main reason, I create this example which includes a first part about `Google settings`. 
 
 ## Goals
-Show step by step how implement "Google + Api" and oAuth credential.
-Basically, the application should offer the google authentication. Once the user accepts the permissions we have the possibility to interact with "Google + api". Finally, we are going to request some data such as name, email, genre, birthday, coverPhoto etc... 
+Show step by step how implement `Google + Api` and oAuth credential.
+Basically, the application should offer the google authentication. Once the user accepts the permissions we have the possibility to interact with `Google + api`. Finally, we are going to request some data such as name, email, genre, birthday, coverPhoto etc... 
 
 ### Include:
 - Concept of oAuth
 - cordovaOauth
 - How configure and available Google oAuth 2.0 to Access Google APIs
 - Sing-in button
-- Use of "Google + Api"
+- Use of `Google + Api`
 - Render peronal details
 
 ### You should now about...
@@ -24,12 +24,12 @@ Basically, the application should offer the google authentication. Once the user
 For this main reason, OAuth was implemented for different companies such as Google, Facebook, and Tweeter etc. You will have the possibility to implement many solution understanding this one.
 
 ## Step 1: Google configuration
-There are many step previously to work with an application. It's a relevant point in order to avoid future issues.
+There are many step previously to work with an oAuth implementation. It's a relevant point configure these appropriated in order to avoid future issues.
 
 
 ### Project
 You should create a project in google.
-Log-in in your google account and go to [https://console.developers.google.com/project](https://console.developers.google.com/project)
+Go to [https://console.developers.google.com/project](https://console.developers.google.com/project)
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/01%20Projects.png)
 
@@ -44,7 +44,7 @@ Go ahead with credentials.
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/03%20Credentials%20%20%20ebrickApi.png)
 
-For this particular framework is important to chose `oAuth 2.0 client ID Configuration`.
+For this particular example is important to chose `oAuth 2.0 client ID Configuration`.
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/04%20Credentials%20%20%20ebrickApi%202.png)
 
@@ -53,9 +53,9 @@ And finally, the strategy will be `Web application`
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/05%20Create%20client%20ID%20%20%20ebrickApi%204.png) 
 
 ### Client ID
-In our application we ar going to use the `Client ID` during the first step. Copy it.
+In our application we are going to use the `Client ID` during the first contact. Copy it.
 Other relevant configuration will be the `Authorized JavaScript Origins` and `Authorize redirect URIs`.
-Complete these fields with `localhost/callback` settings. This will be our `redirect_uri`.
+Complete these fields with `localhost/callback` settings. This will be our `redirect_uri` by default.
 
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/06%20OAuth%20client%20%20%20ebrickApi.png)
 
@@ -86,9 +86,9 @@ You can confirm the enabled API's
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/12%20Google%20APIs%20Explorer.png)
 ![](https://github.com/cristianmercado19/ionic-oAuth-example/blob/master/images/13%20Google%20APIs%20Explorer%20Scope.png)
          
-    3. `redirect_uri`, Determines where the response is sent. In our configuration we put `Http://localhost/callback`[https://github.com/cristianmercado19/ionic-oAuth-example#Client-ID](https://github.com/cristianmercado19/ionic-oAuth-example#Client-ID "Client Id Configuration")
+    3. `redirect_uri`, Determines where the response is sent. We are gong to use the default `Http://localhost/callback` [Viewed in Client-ID section](https://github.com/cristianmercado19/ionic-oAuth-example#client-id)
 2. Google response: Google call `localhost/callback` sending many parameters, the most important for use will be `access_token`. A response looks like this:
-        ```JSON
+        ``` json
         {
           "access_token":"1/fFAGRNJru1FTz70BzhT3Zg",
           "expires_in":3920,
@@ -97,7 +97,7 @@ You can confirm the enabled API's
 3. Call Google + API using the valid token, EG:
     `https://www.googleapis.com/plus/v1/people/me?Access_token=157k550fq2itjk503hgovk9q`
 4. Google + returns all user detail, the response would be similar to this one:
-```JSON
+``` json
 {
  "kind": "plus#person",
  "etag": "\"gLJfwb9Xp0\"",
